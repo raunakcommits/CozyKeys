@@ -6,12 +6,14 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
+const propertyRoutes = require("./routes/propertyRoutes");
 
 require("./config/database");
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api/properties", propertyRoutes);
 
 app.get("/", (req, res) => {
     res.json({
