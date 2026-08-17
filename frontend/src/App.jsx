@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
@@ -15,7 +16,14 @@ import Hero from "./components/Hero";
 import PropertyCard from "./components/PropertyCard";
 import { getProperties } from "./services/propertyService";
 
-function App() {
+// Auth Pages
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
+/* =====================================================
+   HOME PAGE COMPONENT (EXACT ORIGINAL LANDING PAGE)
+   ===================================================== */
+function HomePage() {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -701,6 +709,21 @@ function App() {
       </main>
 
     </div>
+  );
+}
+
+/* =====================================================
+   MAIN APP ROUTER COMPONENT
+   ===================================================== */
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </Router>
   );
 }
 
